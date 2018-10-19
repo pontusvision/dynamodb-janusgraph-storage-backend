@@ -80,7 +80,8 @@ public class SingleDynamoDBGraphTest extends AbstractDynamoDBGraphTest {
     @Test(expected = IllegalArgumentException.class)
     @Override
     @Category({SingleDynamoDBGraphTestCategory.class, SingleItemTestCategory.class })
-    public void testSettingTTLOnUnsupportedType() throws Exception {
+    public void testSettingTTLOnUnsupportedType()
+    {
         super.testSettingTTLOnUnsupportedType();
     }
 
@@ -115,7 +116,8 @@ public class SingleDynamoDBGraphTest extends AbstractDynamoDBGraphTest {
     @Test(expected = IllegalArgumentException.class)
     @Override
     @Category({SingleDynamoDBGraphTestCategory.class, SingleItemTestCategory.class })
-    public void testGetTTLFromUnsupportedType() throws Exception {
+    public void testGetTTLFromUnsupportedType()
+    {
         super.testGetTTLFromUnsupportedType();
     }
 
@@ -150,7 +152,8 @@ public class SingleDynamoDBGraphTest extends AbstractDynamoDBGraphTest {
     @Test
     @Override
     @Category({SingleDynamoDBGraphTestCategory.class, SingleItemTestCategory.class })
-    public void testBasic() {
+    public void testBasic() throws BackendException
+    {
         super.testBasic();
     }
 
@@ -276,7 +279,8 @@ public class SingleDynamoDBGraphTest extends AbstractDynamoDBGraphTest {
     @Test
     @Override
     @Category({SingleDynamoDBGraphTestCategory.class, SingleItemTestCategory.class })
-    public void testDataTypes() throws Exception {
+    public void testDataTypes()
+    {
         super.testDataTypes();
     }
 
@@ -360,7 +364,8 @@ public class SingleDynamoDBGraphTest extends AbstractDynamoDBGraphTest {
     @Test(expected = IllegalArgumentException.class)
     @Override
     @Category({SingleDynamoDBGraphTestCategory.class, SingleItemTestCategory.class })
-    public void testSettingTTLOnNonStaticVertexLabel() throws Exception {
+    public void testSettingTTLOnNonStaticVertexLabel()
+    {
         super.testSettingTTLOnNonStaticVertexLabel();
     }
 
