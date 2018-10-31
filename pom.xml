@@ -21,7 +21,7 @@
         <aws.java.sdk.version>1.11.336</aws.java.sdk.version>
         <jackson.version>2.6.6</jackson.version>
         <janusgraph.version>100-3.0</janusgraph.version>
-        <tinkerpop.version>3.3.3</tinkerpop.version>
+        <tinkerpop.version>3.3.4</tinkerpop.version>
         <dependency.plugin.version>3.0.2</dependency.plugin.version>
         <maven.assembly.plugin.version>3.1.0</maven.assembly.plugin.version>
         <maven.compiler.plugin.version>3.6.2</maven.compiler.plugin.version>
