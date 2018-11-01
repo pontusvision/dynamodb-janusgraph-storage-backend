@@ -1,15 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.amazonaws</groupId>
+    <groupId>com.pontusvision</groupId>
     <artifactId>dynamodb-janusgraph-storage-backend</artifactId>
-    <version>1.2.0</version>
+    <version>100-3.0</version>
     <packaging>jar</packaging>
     <name>Amazon DynamoDB Storage Backend for JanusGraph</name>
-    <url>https://github.com/awslabs/dynamodb-janusgraph-storage-backend</url>
+    <url>https://github.com/pontusvision/pontus-dynamodb-janusgraph-storage-backend</url>
     <description>The Amazon DynamoDB Storage Backend for JanusGraph: Distributed Graph Database allows JanusGraph graphs to use DynamoDB as a storage backend.</description>
     <scm>
         <url>git@github.com:pontusvision/pontus-dynamodb-janusgraph-storage-backend.git</url>
-        <tag>jg0.3.0-1.2.0</tag>
     </scm>
     <properties>
         <default.test.jvm.opts>-Xms256m -Xmx1280m -XX:+HeapDumpOnOutOfMemoryError</default.test.jvm.opts>
