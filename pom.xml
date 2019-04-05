@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
     <name>Amazon DynamoDB Storage Backend for JanusGraph</name>
     <url>https://github.com/pontusvision/pontus-dynamodb-janusgraph-storage-backend</url>
-    <description>The Amazon DynamoDB Storage Backend for JanusGraph: Distributed Graph Database allows JanusGraph graphs to use DynamoDB as a storage backend.</description>
+    <description>The Amazon DynamoDB Storage Backend for JanusGraph: This is an updated version that works with a later version of JanusGraph Distributed Graph Database allows JanusGraph graphs to use DynamoDB as a storage backend.</description>
     <scm>
         <url>git@github.com:pontusvision/pontus-dynamodb-janusgraph-storage-backend.git</url>
     </scm>
@@ -106,12 +106,12 @@
             <version>${aws.java.sdk.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.janusgraph</groupId>
+            <groupId>com.pontusvision</groupId>
             <artifactId>janusgraph-core</artifactId>
             <version>${janusgraph.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.janusgraph</groupId>
+            <groupId>com.pontusvision</groupId>
             <artifactId>janusgraph-test</artifactId>
             <version>${janusgraph.version}</version>
             <scope>test</scope>
@@ -625,7 +625,7 @@
                                     <goal>wget</goal>
                                 </goals>
                                 <configuration>
-                                    <url>https://github.com/JanusGraph/janusgraph/releases/download/v${janusgraph.version}/janusgraph-${janusgraph.version}-hadoop2.zip</url>
+                                    <url>https://github.com/pontusvision/pontus-janusgraph/releases/download/v${janusgraph.version}/janusgraph-${janusgraph.version}-hadoop2.zip</url>
                                     <unpack>false</unpack>
 				    <outputDirectory>${project.build.directory}/../server</outputDirectory>
 				    <skipCache>${download.skip.cache}</skipCache>
