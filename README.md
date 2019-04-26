@@ -15,6 +15,8 @@
 
 JanusGraph + DynamoDB = Distributed Graph Database - Cluster Host Management
 
+This is an updated version of the DynamoDB driver for Janusgraph modified to work with the JanusGraph patches from [pontus-janusgraph](https://github.com/pontusvision/pontus-janusgraph)
+
 [![Build Status](https://travis-ci.org/awslabs/dynamodb-janusgraph-storage-backend.svg?branch=master)](https://travis-ci.org/awslabs/dynamodb-janusgraph-storage-backend)
 
 ## Features
@@ -28,7 +30,7 @@ account in the same region.
 multiple-item model based on graph size and utilization.
 * Test graph locally with DynamoDB Local.
 * Integrated with JanusGraph metrics.
-* JanusGraph 0.2.0 and TinkerPop 3.2.6 compatibility.
+* JanusGraph 0.3.0 and TinkerPop 3.3.4 compatibility.
 * Upgrade compatibility from Titan 1.0.0.
 
 ## Getting Started

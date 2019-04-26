@@ -80,6 +80,7 @@ public class DynamoDbStoreTransaction extends AbstractStoreTransaction {
 
     /**
      * Determins whether a particular key and column are part of this transaction
+     * @param store the dynamodb store to connect to
      * @param key key to check for existence
      * @param column column to check for existence
      * @return true if both the key and column combination are in this transaction and false otherwise.

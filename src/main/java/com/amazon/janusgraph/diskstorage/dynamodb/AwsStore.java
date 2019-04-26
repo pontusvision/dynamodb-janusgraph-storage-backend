@@ -41,7 +41,7 @@ public interface AwsStore extends KeyColumnValueStore {
 
     /**
      * Deletes the KCV store and underlying DynamoDB tables.
-     * @throws BackendException
+     * @throws BackendException if unable to connect to the underlying store
      */
     void deleteStore() throws BackendException;
 
@@ -56,8 +56,8 @@ public interface AwsStore extends KeyColumnValueStore {
 
     /**
      * Creates workers whose job it is to commit the actual mutations in the given mutation map.
-     * @param mutationMap
-     * @param txh
+     * @param mutationMap  - a map of operations to make in the given dynamodb transaction
+     * @param txh - the current transaction
      * @return a collection of MutateWorker objects that when executed will commit all changes specified by mutationMap
      */
     Collection<MutateWorker> createMutationWorkers(Map<StaticBuffer, KCVMutation> mutationMap,

@@ -60,7 +60,7 @@ public class MultiUpdateExpressionBuilder extends AbstractBuilder {
 
     /**
      *
-     * @return
+     * @return an Expression that can be used to either update or delete items
      */
     public Expression build() {
         final Map<String, AttributeValue> attributeValues = Maps.newHashMap();

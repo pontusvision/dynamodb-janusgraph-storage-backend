@@ -25,8 +25,8 @@ public interface ScanContextInterpreter {
 
     /**
      *
-     * @param scanContext
-     * @return
+     * @param scanContext - the context for the current scanning operation
+     * @return a list of Single Key Record Iterators to traverse over the results.
      */
     List<SingleKeyRecordIterator> buildRecordIterators(ScanContext scanContext);
 

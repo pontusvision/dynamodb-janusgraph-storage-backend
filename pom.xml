@@ -10,6 +10,16 @@
     <scm>
         <url>git@github.com:pontusvision/pontus-dynamodb-janusgraph-storage-backend.git</url>
     </scm>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
     <properties>
         <default.test.jvm.opts>-Xms256m -Xmx1280m -XX:+HeapDumpOnOutOfMemoryError</default.test.jvm.opts>
         <mem.jvm.opts>-Xms256m -Xmx768m -ea -XX:+HeapDumpOnOutOfMemoryError</mem.jvm.opts>
@@ -17,7 +27,7 @@
         <dynamodb-local.port>4567</dynamodb-local.port>
         <dynamodb-local.endpoint>http://localhost:${dynamodb-local.port}</dynamodb-local.endpoint>
         <jdk.version>1.8</jdk.version>
-        <aws.java.sdk.version>1.11.336</aws.java.sdk.version>
+        <aws.java.sdk.version>1.11.539</aws.java.sdk.version>
         <jackson.version>2.6.6</jackson.version>
         <janusgraph.version>100-3.0</janusgraph.version>
         <tinkerpop.version>3.3.4</tinkerpop.version>
@@ -331,6 +341,53 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <!--
+                      Only release:perform uses this configuration
+                      setting; release:prepare doesn't care and always
+                      runs "clean verify"
+                    -->
+                    <goals>javadoc:aggregate deploy</goals>
+
+                    <!--
+                      Tell the release plugin to never "git push".
+                      When releasing, you have to manually issue "git
+                      push" between release:prepare and
+                      release:perform.  You'll have to push both the
+                      branch you're releasing and the tag
+                      release:prepare locally created.
+                    -->
+                    <pushChanges>false</pushChanges>
+
+                    <!--
+                      @{...} is a special variable interpolation
+                      syntax that uses the target release version
+                      instead of the pom's actual version, which is
+                      usually a -SNAPSHOT version when this setting
+                      gets evaluated.
+                    -->
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+
+                    <!--
+                      The release:perform goal activates these
+                      profiles when it invokes maven with the <goals>
+                      listed above.  Release engineering specific to
+                      release:perform and disabled during non-release
+                      operation should be encapsulated with the
+                      profile id listed below.
+                    -->
+                    <releaseProfiles>janusgraph-release</releaseProfiles>
+                    <useReleaseProfile>false</useReleaseProfile>
+
+                    <!-- Keep all submodules at same version as parent -->
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+
+                    <!-- applies to both release:prepare and :perform -->
+                    <arguments>-DskipTests=true</arguments>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -492,6 +549,69 @@
         </plugins>
     </build>
     <profiles>
+
+        <profile>
+            <id>janusgraph-release</id>
+            <!--
+              Sign artifacts artifacts only during release:perform
+              when this profile is automatically activated or whenever
+              else it is manually activated.
+
+              Stolen from: http://blog.sonatype.com/people/2010/01/how-to-generate-pgp-signatures-with-maven/
+            -->
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- Quiet mode still shows warnings and errors -->
+                                    <quiet>true</quiet>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <useAgent>true</useAgent>
+                                    <skip>${gpg.skip}</skip>
+                                    <excludes>
+                                        <exclude>*.asc</exclude>
+                                    </excludes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <profile>
             <id>dynamodb-janusgraph-docker</id>
             <build>

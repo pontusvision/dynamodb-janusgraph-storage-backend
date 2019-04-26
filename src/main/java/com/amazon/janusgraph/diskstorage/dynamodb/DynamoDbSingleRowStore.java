@@ -69,8 +69,8 @@ import lombok.extern.slf4j.Slf4j;
  * storage.dynamodb.stores.***store_name***.data-model=SINGLE
  *
  * KCV Schema - actual table (Hash(S) only):
- * hk   |  0x02  |  0x04    <-Attribute Names
- * 0x01 |  0x03  |  0x05    <-Row Values
+ * hk   |  0x02  |  0x04    - Attribute Names
+ * 0x01 |  0x03  |  0x05    - Row Values
  *
  * @author Matthew Sowders
  * @author Alexander Patrikalakis

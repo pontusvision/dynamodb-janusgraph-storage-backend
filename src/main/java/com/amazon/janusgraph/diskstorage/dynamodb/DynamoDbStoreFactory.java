@@ -30,7 +30,7 @@ public interface DynamoDbStoreFactory {
      * the full table name would be foo_bar. The prefix is shared by all stores created by a factory.
      * @param name the name of the KCVStore, without the prefix.
      * @return a KCVStore with the given name and table prefix
-     * @throws BackendException
+     * @throws BackendException if unable to connect to the dynamodb backend
      */
     AwsStore create(DynamoDBStoreManager manager, String prefix, String name) throws BackendException;
 

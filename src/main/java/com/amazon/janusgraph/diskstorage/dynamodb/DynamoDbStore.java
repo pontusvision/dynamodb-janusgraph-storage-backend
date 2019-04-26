@@ -71,9 +71,9 @@ import lombok.extern.slf4j.Slf4j;
  * storage.dynamodb.stores.***table_name***.data-model=MULTI
  *
  * KCV Schema - actual table (Hash(S) + Range(S)):
- * hk(S)  |  rk(S)  |  v(B)  <-Attribute Names
- * 0x01   |  0x02   |  0x03  <-Row Values
- * 0x01   |  0x04   |  0x05  <-Row Values
+ * hk(S)  |  rk(S)  |  v(B)  - Attribute Names
+ * 0x01   |  0x02   |  0x03  - Row Values
+ * 0x01   |  0x04   |  0x05  - Row Values
  *
  * @author Matthew Sowders
  * @author Alexander Patrikalakis
